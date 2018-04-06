@@ -1,0 +1,35 @@
+from bs4 import BeautifulSoup as soup
+import json
+import requests
+f=open('dataset1.csv','w')
+f.write("a,meta,head,iframe,script,span,li,frame,p,div,input,img,select,form,option,link,base,param,embed,object,noscript,nav,Website\n")
+urls={'Google':'https://www.google.co.in/','Microsoft':'https://www.microsoft.com/en-in','Nokia':'https://www.nokia.com/en_int','Amazon':'https://www.amazon.in/','Twitter':'https://twitter.com/','Facebook':'https://www.facebook.com/','Youtube':'https://www.youtube.com/','Yahoo':'https://in.yahoo.com/?p=us','Apple':'https://www.apple.com/','Paytm':'https://paytm.com/','NITK':'http://www.nitk.ac.in/','Flipkart':'https://www.flipkart.com/','SBI':'https://www.onlinesbi.com/','Netflix':'https://www.netflix.com/in/','Myntra':'https://www.myntra.com/','Fmovies':'https://fmovies.to/','Indian Railways':'https://www.irctc.co.in/eticketing/loginHome.jsf','Hotstar':'http://www.hotstar.com/','IEEE':'http://ieeexplore.ieee.org/','EA Games':'https://www.ea.com/','Cricbuzz':'http://www.cricbuzz.com/','w3schools':'https://www.w3schools.com/','ZeeStudio':'http://www.ozee.com/zeekannada','Sony':'http://www.sony.co.in/'}
+for url in urls:
+    print(url)
+    page=requests.get(urls[url])
+    page_soup=soup(page.text,"html.parser")
+    a=page_soup.findAll('a')
+    span=page_soup.findAll('span')
+    meta=page_soup.findAll('meta')
+    head=page_soup.findAll('head')
+    script=page_soup.findAll('script')
+    iframe=page_soup.findAll('iframe')
+    li=page_soup.findAll('li')
+    frame=page_soup.findAll('frame')
+    p=page_soup.findAll('p')
+    div=page_soup.findAll('div')
+    ipt=page_soup.findAll('input')
+    img=page_soup.findAll('img')
+    select=page_soup.findAll('select')
+    form=page_soup.findAll('form')
+    option=page_soup.findAll('option')
+    link=page_soup.findAll('link')
+    base=page_soup.findAll('base')
+    param=page_soup.findAll('param')
+    embed=page_soup.findAll('embed')
+    obj=page_soup.findAll('object')
+    noscript=page_soup.findAll('noscript')
+    nav=page_soup.findAll('nav')
+    f.write(str(len(a))+","+str(len(meta))+","+str(len(head))+","+str(len(iframe))+","+str(len(script))+","+str(len(span))+","+str(len(li))+","+str(len(frame))+","+str(len(p))+","+str(len(div))+","+str(len(ipt))+","+str(len(img))+","+str(len(select))+","+str(len(form))+","+str(len(option))+","+str(len(link))+","+str(len(base))+","+str(len(param))+","+str(len(embed))+","+str(len(obj))+","+str(len(noscript))+","+str(len(nav))+","+url+"\n")
+f.close()
+    
